@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Auto Translator</title>
+    <!-- BootstrapのCSS読み込み -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/jpncss@latest/dist/bootstrap/jpn.min.css"
+    />
+    <style>
+      body {
+        background-color: lavender;
+      }
+      header {
+        background-color: royalblue;
+      }
+      #main {
+        width: 700px;
+        margin: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="fs-1 text-center text-light mb-5">
+      言語を選択して自動翻訳
+    </header>
+    <div id="main">
+      <form action="/" method="POST">
+        <p>
+          <textarea
+            type="text"
+            id="tbox"
+            name="sentence"
+            cols="91"
+            rows="5"
+          ></textarea>
+        </p>
+        <p>
+          <select name="language" id="language" class="mb-5"></select>
+          で入力した文章を<input type="submit" value="翻訳" />
+        </p>
+      </form>
+      <div class="text-danger fs-4">{% if error %} {{ error }} {% endif %}</div>
+      <div class="fs-5">
+        {% if translated %}
+        <p>元の文章↓↓</p>
+        <p>{{ sentence }}</p>
+        <p>『{{ language }}』で翻訳↓↓</p>
+        <p>{{ translated }}</p>
+        {% endif %}
+      </div>
+    </div>
+  </body>
+</html>
+
+<script type="text/javascript">
+  lang_list = [
+    'english',
+    'japanese',
+    'afrikaans',
+    'albanian',
+    'amharic',
+    'arabic',
+    'armenian',
+    'assamese',
+    'aymara',
+    'azerbaijani',
+    'bambara',
+    'basque',
+    'belarusian',
+    'bengali',
+    'bhojpuri',
+    'bosnian',
+    'bulgarian',
+    'catalan',
+    'cebuano',
+    'chichewa',
+    'chinese (simplified)',
+    'chinese (traditional)',
+    'corsican',
+    'croatian',
+    'czech',
+    'danish',
+    'dhivehi',
+    'dogri',
+    'dutch',
+    'esperanto',
+    'estonian',
+    'ewe',
+    'filipino',
+    'finnish',
+    'french',
+    'frisian',
+    'galician',
+    'georgian',
+    'german',
+    'greek',
+    'guarani',
+    'gujarati',
+    'haitian creole',
+    'hausa',
+    'hawaiian',
+    'hebrew',
+    'hindi',
+    'hmong',
+    'hungarian',
+    'icelandic',
+    'igbo',
+    'ilocano',
+    'indonesian',
+    'irish',
+    'italian',
+    'javanese',
+    'kannada',
+    'kazakh',
+    'khmer',
+    'kinyarwanda',
+    'konkani',
+    'korean',
+    'krio',
+    'kurdish (kurmanji)',
+    'kurdish (sorani)',
+    'kyrgyz',
+    'lao',
+    'latin',
+    'latvian',
+    'lingala',
+    'lithuanian',
+    'luganda',
+    'luxembourgish',
+    'macedonian',
+    'maithili',
+    'malagasy',
+    'malay',
+    'malayalam',
+    'maltese',
+    'maori',
+    'marathi',
+    'meiteilon (manipuri)',
+    'mizo',
+    'mongolian',
+    'myanmar',
+    'nepali',
+    'norwegian',
+    'odia (oriya)',
+    'oromo',
+    'pashto',
+    'persian',
+    'polish',
+    'portuguese',
+    'punjabi',
+    'quechua',
+    'romanian',
+    'russian',
+    'samoan',
+    'sanskrit',
+    'scots gaelic',
+    'sepedi',
+    'serbian',
+    'sesotho',
+    'shona',
+    'sindhi',
+    'sinhala',
+    'slovak',
+    'slovenian',
+    'somali',
+    'spanish',
+    'sundanese',
+    'swahili',
+    'swedish',
+    'tajik',
+    'tamil',
+    'tatar',
+    'telugu',
+    'thai',
+    'tigrinya',
+    'tsonga',
+    'turkish',
+    'turkmen',
+    'twi',
+    'ukrainian',
+    'urdu',
+    'uyghur',
+    'uzbek',
+    'vietnamese',
+    'welsh',
+    'xhosa',
+    'yiddish',
+    'yoruba',
+    'zulu',
+  ]
+  var language = document.getElementById('language')
+  for (var i = 0; i < lang_list.length; i++) {
+    var option = document.createElement('option')
+    option.value = lang_list[i]
+    option.innerText = lang_list[i]
+    language.appendChild(option)
+  }
+</script>
